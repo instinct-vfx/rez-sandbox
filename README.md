@@ -59,3 +59,5 @@ data emitted and persisted.
 > Currently the connection to the postgres database needs to be setup manually
 > in the GUI of metabase. This might be automated in the future, and if we can
 > we will try to provide some sample charts and dashboards.
+
+![(docs/images/metabase_01.png)]
