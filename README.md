@@ -1,3 +1,7 @@
+
+> [!CAUTION]
+> This project is highly WIP and expected to change quite a bit (and break easily)
+
 # Rez development and testing sandbox
 
 This project aims to provide a low barrier entry to trying rez - including optional
