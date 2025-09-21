@@ -1,1 +1,0 @@
-podman build .\rez_context_tracking_consumer -t rez_context_tracking_consumer
