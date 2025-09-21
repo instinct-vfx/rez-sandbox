@@ -1,0 +1,92 @@
+services:
+  memcached:
+    image: memcached:latest
+    container_name: memcached
+    restart: always
+    ports:
+        - 11211:11211
+  
+  rabbitmq:
+    image: rabbitmq:4.1.4-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - 5672:5672
+        - 15672:15672
+    environment:
+        - RABBITMQ_DEFAULT_USER=rabbitmq
+        - RABBITMQ_DEFAULT_PASS=rabbitmq
+    healthcheck:
+      test: rabbitmq-diagnostics --quiet check_running && rabbitmq-diagnostics --quiet check_local_alarms
+      interval: 30s
+      timeout: 30s
+      retries: 3
+  
+  postgres:
+    image: postgres:17.6-alpine
+    container_name: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - PGUSER=postgres 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rez_context_tracking
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  pgadmin:
+    depends_on:
+      postgres:
+        condition: service_healthy
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin@pgadmin.io
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin
+    ports:
+      - "5050:80"
+    volumes:
+      - ./config/servers.json:/pgadmin4/servers.json
+      - ./config/pgpass:/config/pgpass
+    restart: always
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    hostname: metabase
+    volumes:
+      - /dev/urandom:/dev/random:ro
+    ports:
+      - 3000:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  consumer:
+    image: rez_context_tracking_consumer
+    container_name: consumer
+    restart: always
+    depends_on:    
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USER=rabbitmq
+      - RABBITMQ_PASS=rabbitmq
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASS=postgres
+
+

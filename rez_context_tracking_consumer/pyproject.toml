@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rez_context_tracking_consumer"
+version = "0.1.0"
+dependencies = [
+  "pika>=1.2.0",
+  "peewee>=3.17.5",
+  "psycopg2-binary>=2.9.9",
+]
+requires-python = ">=3.9"
+authors = [
+  {name = "Thorsten Kaufmann", email = "instinctvfx@googlemail.com"},
+]
+maintainers = [
+  {name = "Thorsten Kaufmann", email = "instinctvfx@googlemail.com"},
+]
+description = "AQMP event listener to persist rez context events to a postgres database"
+readme = "README.md"
+keywords = ["rez"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+# [project.urls]
+# Repository = "https://github.com/.../rez_context_tracking_consumer.git"
