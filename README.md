@@ -45,10 +45,14 @@ database.
 The current setup does not do a lot of normalization and stores the event data
 as emitted by rez into a json column.
 
+![Metabase example 1](./docs/images/rabbitmq.png)
+
 ## pgadmin
 
 A connected pgadmin instance is spun up to allow for easy inspection of the
 data in the provided postgres instance
+
+![Metabase example 1](./docs/images/pgadmin.png)
 
 ## Charting and analytics with metabase
 
@@ -60,4 +64,5 @@ data emitted and persisted.
 > in the GUI of metabase. This might be automated in the future, and if we can
 > we will try to provide some sample charts and dashboards.
 
-![(docs/images/metabase_01.png)]
+![Metabase example 1](./docs/images/metabase_01.png)
+![Metabase example 2](./docs/images/metabase_02.png)
