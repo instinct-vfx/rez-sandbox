@@ -43,6 +43,8 @@ export REZ_CONFIG_FILE="$(pwd)/config/rezconfig.py:$REZ_CONFIG_FILE"
 > debug log output by setting `REZ_DEBUG_MEMCACHE` or `REZ_DEBUG_CONTEXT_TRACKING`
 > to anything non-zero, e.g. `1` respectively.
 
+# Changelog v0.1.0
+Initial release
 
 # Contents
 
