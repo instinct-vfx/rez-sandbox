@@ -56,9 +56,11 @@ services:
     restart: always
 
   metabase:
+    profiles:
+      - metabase
     image: metabase/metabase:latest
-    container_name: metabase
-    hostname: metabase
+    container_name: metabase    
+    hostname: metabase    
     volumes:
       - /dev/urandom:/dev/random:ro
     ports:
@@ -74,6 +76,8 @@ services:
 
   consumer:
     image: rez_context_tracking_consumer
+    build: 
+      context: ./rez_context_tracking_consumer
     container_name: consumer
     restart: always
     depends_on:    
