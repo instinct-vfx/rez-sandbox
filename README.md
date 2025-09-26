@@ -38,7 +38,10 @@ set REZ_CONFIG_FILE=%cd%\config\rezconfig.py;%REZ_CONFIG_FILE%
 export REZ_CONFIG_FILE="$(pwd)/config/rezconfig.py:$REZ_CONFIG_FILE"
 ```
 
-## Linuux
+> [!NOTE]
+> If you want to test or debug memcached and context tracking you can enable 
+> debug log output by setting `REZ_DEBUG_MEMCACHE` or `REZ_DEBUG_CONTEXT_TRACKING`
+> to anything non-zero, e.g. `1` respectively.
 
 
 # Contents
