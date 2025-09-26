@@ -1,1 +1,0 @@
-$env:REZ_CONFIG_FILE="$PSScriptRoot\..\config\rezconfig.py"

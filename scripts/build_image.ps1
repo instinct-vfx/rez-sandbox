@@ -1,1 +1,0 @@
-docker build "$PSScriptRoot\..\rez_context_tracking_consumer" -t rez_context_tracking_consumer
