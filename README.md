@@ -9,15 +9,37 @@ services like memcached and amqp - and getting a development and testing sandbox
 
 # Quickstart
 
-## Windows
 
-From the main repository folder:
+## Build the consumer image and bring up all services
+
+The image of the custom consumer is automatically build through docker compose.
+The following command should both build and bring all services online in order.
 
 ```
-.\scripts\build_image.ps1
-docker compose up -d
-.\scripts\set_rezconfig.ps1
+docker compose -d --build up
 ```
+
+## Configure rez
+To configure rez to use memcached and emit events on resolve add the rezconfig.py
+provided to `REZ_CONFIG_PATH` :
+
+### Windows Powershell
+```
+$env:REZ_CONFIG_FILE="$pwd\config\rezconfig.py;$env:REZ_CONFIG_FILE"
+```
+
+### Windows CMD
+```
+set REZ_CONFIG_FILE=%cd%\config\rezconfig.py;%REZ_CONFIG_FILE%
+```
+
+### Linux and Mac
+```
+export REZ_CONFIG_FILE="$(pwd)/config/rezconfig.py:$REZ_CONFIG_FILE"
+```
+
+## Linuux
+
 
 # Contents
 
