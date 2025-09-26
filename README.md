@@ -16,7 +16,7 @@ The image of the custom consumer is automatically build through docker compose.
 The following command should both build and bring all services online in order.
 
 ```
-docker compose -d --build up
+docker compose up -d --build
 ```
 
 ## Configure rez
